@@ -13,7 +13,12 @@ public class Main {
 
         Passenger passenger1 = new Passenger("Nikita");
 
+        Train train3 = schedule.findTrainByDestination("Moscow");
+
+        schedule.addTrain(train3);
+
         schedule.showSchedule();
+
         passenger1.boardTrain(train2);
     }
 }

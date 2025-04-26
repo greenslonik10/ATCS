@@ -18,4 +18,13 @@ public class Schedule {
             }
         }
     }
+
+    public Train findTrainByDestination(String destination) {
+        for (Train train : trains) {
+            if (train.getInfo().toLowerCase().contains(destination.toLowerCase())) {
+                return train;
+            }
+        }
+        return null;
+    }
 }
