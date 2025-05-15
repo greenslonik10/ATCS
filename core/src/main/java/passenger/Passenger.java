@@ -4,6 +4,10 @@ import train.Train;
 public class Passenger {
     private final String name;
 
+    public String getName() {
+        return name;
+    }
+
     public Passenger(String name) {
         this.name = name;
     }
