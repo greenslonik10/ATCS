@@ -2,6 +2,7 @@ package train;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class TrainTest {
 
@@ -17,5 +18,18 @@ class TrainTest {
         Train train = new Train("Saint-Petersburg", "12:45");
         String expected = "Train to Saint-Petersburg starts in 12:45";
         assertEquals(expected, train.getInfo());
+    }
+
+    @Test
+    void testTrainMock() {
+        Train mockTrain = mock(Train.class);
+
+        when(mockTrain.getInfo()).thenReturn("Train to Kazan starts in 16:00");
+
+        String info = mockTrain.getInfo();
+
+        assertEquals("Train to Kazan starts in 16:00", info);
+
+        verify(mockTrain).getInfo();
     }
 }

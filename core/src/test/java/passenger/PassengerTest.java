@@ -1,8 +1,11 @@
 package passenger;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import train.Train;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class PassengerTest {
 
@@ -15,9 +18,14 @@ class PassengerTest {
 
     @Test
     void testBoardTrain() {
+        Train mockTrain = Mockito.mock(Train.class);
+        when(mockTrain.getInfo()).thenReturn("MockTrain to Berlin at 09:00");
+
         Passenger passenger = new Passenger("Alice");
-        Train train = new Train("Paris", "08:15");
-        
-        assertDoesNotThrow(() -> passenger.boardTrain(train));
+
+        assertDoesNotThrow(() -> passenger.boardTrain(mockTrain));
+
+        verify(mockTrain, times(1)).getInfo();
     }
 }
+

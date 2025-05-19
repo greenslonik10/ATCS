@@ -3,7 +3,11 @@ package schedule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import train.Train;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ScheduleTest {
     private Schedule schedule;
@@ -13,8 +17,12 @@ class ScheduleTest {
     @BeforeEach
     void setUp() {
         schedule = new Schedule();
-        train1 = new Train("Moscow", "10:30");
-        train2 = new Train("Saint-Petersburg", "12:45");
+
+        train1 = mock(Train.class);
+        when(train1.getInfo()).thenReturn("Moscow - 10:30");
+
+        train2 = mock(Train.class);
+        when(train2.getInfo()).thenReturn("Saint-Petersburg - 12:45");
     }
 
     @Test
@@ -40,10 +48,20 @@ class ScheduleTest {
     }
 
     @Test
+    void testShowScheduleWithTrains() {
+        schedule.addTrain(train1);
+        schedule.addTrain(train2);
+        assertDoesNotThrow(() -> schedule.showSchedule());
+
+        verify(train1, times(1)).getInfo();
+        verify(train2, times(1)).getInfo();
+    }
+
+    @Test
     void testFindTrainByDestination() {
         schedule.addTrain(train1);
         schedule.addTrain(train2);
-        
+
         Train found = schedule.findTrainByDestination("Moscow");
         assertNotNull(found);
         assertEquals(train1.getInfo(), found.getInfo());
@@ -51,7 +69,9 @@ class ScheduleTest {
 
     @Test
     void testFindNonExistentTrain() {
-        assertNull(schedule.findTrainByDestination("Non-existent"));
+        schedule.addTrain(train1);
+        Train found = schedule.findTrainByDestination("Paris");
+        assertNull(found);
     }
 
     @Test
@@ -64,5 +84,14 @@ class ScheduleTest {
     @Test
     void testRemoveNonExistentTrain() {
         assertFalse(schedule.removeTrain(train1));
+    }
+
+    @Test
+    void testGetTrainsReturnsCopy() {
+        schedule.addTrain(train1);
+        List<Train> original = schedule.getTrains();
+        original.clear(); // пытаемся изменить список
+
+        assertEquals(1, schedule.getTrains().size(), "getTrains() должен возвращать копию, а не оригинал");
     }
 }
