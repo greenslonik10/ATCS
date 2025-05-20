@@ -1,0 +1,4 @@
+MainIntegrationTest.class
+passenger\PassengerTest.class
+schedule\ScheduleTest.class
+train\TrainTest.class
