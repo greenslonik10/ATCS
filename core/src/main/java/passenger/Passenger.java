@@ -1,18 +1,22 @@
 package passenger;
+
 import train.Train;
 
+/**
+ * Класс пассажиров.
+ */
 public class Passenger {
-    private final String name;
+  private final String name;
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public Passenger(String name) {
-        this.name = name;
-    }
+  public Passenger(String name) {
+    this.name = name;
+  }
 
-    public void boardTrain(Train train) {
-        System.out.println(name + " set on " + train.getInfo());
-    }
+  public void boardTrain(Train train) {
+    System.out.println(name + " set on " + train.getInfo());
+  }
 }
