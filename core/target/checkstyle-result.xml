@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="9.3">
+<file name="C:\Paractice\ATCS\core\src\main\java\passenger\Passenger.java">
+</file>
+<file name="C:\Paractice\ATCS\core\src\main\java\schedule\Schedule.java">
+</file>
+<file name="C:\Paractice\ATCS\core\src\main\java\train\Train.java">
+</file>
 </checkstyle>
