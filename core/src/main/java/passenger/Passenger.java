@@ -1,7 +1,7 @@
 package passenger;
 import train.Train;
 
-//Тест
+//Тест 1
 public class Passenger {
     private final String name;
 
